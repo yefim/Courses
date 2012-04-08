@@ -17,7 +17,7 @@
     </thead>
     <tbody>
   <?php
-  $q = "SELECT i.ingredientID as id, name, quantity FROM Ingredient i, UserHas h WHERE i.ingredientID=h.ingredientID AND FBid=" . $_SESSION['userID'];
+  $q = "SELECT i.ingredientid as id, name, quantity FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=" . $_SESSION['userID'];
   //echo $q;
   $ingredients = mysql_query($q);
   while($row = mysql_fetch_array($ingredients)) {
@@ -32,12 +32,12 @@
       <td>
         <select id='ingredients'>
           <?php
-          $q = "SELECT * FROM Ingredient WHERE ingredientID NOT IN (SELECT i.ingredientID FROM Ingredient i, UserHas h WHERE i.ingredientID=h.ingredientID AND FBid=".$_SESSION['userID'].")";
-          echo $q;
+          $q = "SELECT * FROM ingredients WHERE ingredientid NOT IN (SELECT i.ingredientid FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=".$_SESSION['userID'].")";
+          //echo $q;
           $list = mysql_query($q);
           while ($row = mysql_fetch_array($list)) {
           ?>
-           <option id='<?php echo $row['ingredientID']; ?>'><?php echo $row['name']; ?></option>
+           <option id='<?php echo $row['ingredientid']; ?>'><?php echo $row['name']; ?></option>
           <?php } ?>
         </select>
       </td>

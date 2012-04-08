@@ -6,13 +6,13 @@
   $id = $_SESSION['userID'];
   switch($method) {
     case "delete":
-      $q = "DELETE FROM UserHas WHERE FBid=".$id." AND ingredientID='".$_GET['id']."'";
+      $q = "DELETE FROM userhas WHERE FBid=".$id." AND ingredientid='".$_GET['id']."'";
       break;
     case "insert":
-      $q = "INSERT INTO UserHas(FBid, ingredientID, quantity) VALUES(".$id.", ".$_GET['id'].", ".$_GET['quantity'].")";
+      $q = "INSERT INTO userhas(FBid, ingredientid, quantity) VALUES(".$id.", ".$_GET['id'].", ".$_GET['quantity'].")";
       break;
     case "update":
-      $q = "UPDATE UserHas SET quantity=".$_GET['quantity']." WHERE FBid=".$id." AND ingredientID='".$_GET['id']."'";
+      $q = "UPDATE userhas SET quantity=".$_GET['quantity']." WHERE FBid=".$id." AND ingredientid='".$_GET['id']."'";
       break;
   }
   mysql_query($q);

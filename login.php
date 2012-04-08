@@ -5,11 +5,11 @@
     $id = $_GET['userID'];
     $first = $_GET['firstname'];
     $last = $_GET['lastname'];
-    $result = mysql_query("SELECT * FROM Users WHERE FBid=" + $id);
+    $result = mysql_query("SELECT * FROM users WHERE FBid=" + $id);
     $num_rows = mysql_num_rows($result);
     //add user if he does not exist yet
     if ($num_rows == 0) {
-      mysql_query("INSERT INTO Users(FBid, firstname, lastname) VALUES('$id','$first','$last')");
+      mysql_query("INSERT INTO users(FBid, firstname, lastname) VALUES('$id','$first','$last')");
     }
     $_SESSION['userID'] = $id;
     $_SESSION['first'] = $first;
