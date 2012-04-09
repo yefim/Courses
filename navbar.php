@@ -6,6 +6,9 @@
          <li id='index'><a href="index.php">Home</a></li>
          <li id='browse'><a href="browse.php">Browse Meals</a></li>
          <li id='build'><a href="build.php">Build a Meal</a></li>
+		 <li id='addDish'><a href="createdish.php">Add a Dish</a></li>
+		 <li id='addRecipes'><a href="addRecipes.php">Add a Recipe</a></li>
+		 <li id='addIngredient'><a href="createingredient.php">Add an Ingredient</a></li>
          <?php if(isset($_SESSION['userID'])) { ?>
           <li><a href="logout.php">Log out</a></li>
          <?php } else { ?>
