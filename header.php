@@ -9,6 +9,7 @@
     <script type='text/javascript' src='javascripts/table.js'></script>
     <script type='text/javascript' src='javascripts/ready.js'></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/chosen.css" />
     <link rel="stylesheet" type="text/css" href="css/base.css" />
   </head>
   <body>

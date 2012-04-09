@@ -31,3 +31,5 @@
 	<button class='btn btn-primary'>Add this Recipe</button>
 	</div>
 </form>
+
+<?php include('footer.php'); ?>
