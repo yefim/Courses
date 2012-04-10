@@ -17,7 +17,7 @@
     </thead>
     <tbody>
   <?php
-  $q = "SELECT i.ingredientid as id, name, quantity FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=" . $_SESSION['userID'];
+  $q = "SELECT i.ingredientid as id, i.name FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=" . $_SESSION['userID'] . " ORDER BY i.name";
   //echo $q;
   $ingredients = mysql_query($q);
   while($row = mysql_fetch_array($ingredients)) {
