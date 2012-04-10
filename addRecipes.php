@@ -1,7 +1,7 @@
 <?php include('header.php'); ?>
 
 <?php
-	$q = "SELECT Dish.name, Dish.dishID FROM Dish ORDER BY Dish.name";
+	$q = "SELECT * FROM Dish ORDER BY Dish.name";
 	$dishes = mysql_query($q);
 ?>
 
@@ -17,7 +17,7 @@
 	Cook Time:
 	<input name="cookTime" type=text size="3" maxlength="3"><br> <!-- accept only ints -->
 	DishID:
-	<select name="dishID" data-placeholder="Choose a dish" class="chzn-select" style="width:350px;" tabindex="2">
+	<select name="dishID[]" data-placeholder="Choose a dish" class="chzn-select" style="width:350px;" tabindex="2">
 		<option value=""></option>
 	<?php
 	while($row = mysql_fetch_array($dishes)) {

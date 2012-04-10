@@ -5,11 +5,16 @@
 	$instructions = $_POST["instructions"];
 	$prepTime = $_POST["prepTime"];
 	$cookTime = $_POST["cookTime"];
-	//$recipeID = 
+	$result = mysql_query("SHOW TABLE STATUS LIKE 'recipe'");
+	$row = mysql_fetch_array($result);
+	$recipeID = $row['Auto_increment'];
 	$dishID = $_POST["dishID"];
 	
 	mysql_query("INSERT INTO recipes
-	(RECIPEID, NAME, INSTRUCTIONS, PREPTIME, COOKTIME, DISHID) VALUES
-	($recipeID, $recipeName, $instructions, $prepTime, $cookTime, $dishID)";
+	(NAME, INSTRUCTIONS, PREPTIME, COOKTIME, DISHID) VALUES
+	($recipeName, $instructions, $prepTime, $cookTime, $dishID)";
+	
+	// Input ingredients
+	//   Add to usedin 
 		
 ?>
