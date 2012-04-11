@@ -1,8 +1,8 @@
 <?php include('header.php'); ?>
 
 <?php
-	$q = "SELECT * FROM Dish ORDER BY Dish.name";
-	$dishes = mysql_query($q);
+	$dishes = mysql_query("SELECT * FROM Dish ORDER BY Dish.name");
+	$ingredients = mysql_query("SELECT * FROM Ingredients ORDER BY Ingredients.name");
 ?>
 
 <h1> Add a Recipe:</h1>
@@ -23,6 +23,17 @@
 	while($row = mysql_fetch_array($dishes)) {
 	?>
 		<option value="<?php echo $row['dishid'];?>"><?php echo $row['name'];?></option>
+	<?php
+	}
+	?>
+	</select><br><br>
+	Ingredients Needed:
+	<select name="ingredients[]" data-placeholder="Choose ingredients" class="chzn-select" multiple style="width:350px;" tabindex="4">
+		<option value=""></option>
+	<?php
+	while($row = mysql_fetch_array($ingredients)) {
+	?>
+		<option value="<?php echo $row['ingredientid'];?>"><?php echo $row['name'];?></option>
 	<?php
 	}
 	?>
