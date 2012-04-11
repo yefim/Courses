@@ -23,4 +23,5 @@ $(document).ready(function() {
       $('#add').trigger('click');
     }
   });
+  $('#ingredients').typeahead();
 });

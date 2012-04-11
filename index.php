@@ -30,16 +30,15 @@
   <?php } ?>
     <tr class='item-row'>
       <td>
-        <select id='ingredients'>
+        <input id='ingredients' type='text' />
           <?php
           $q = "SELECT * FROM ingredients WHERE ingredientid NOT IN (SELECT i.ingredientid FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=".$_SESSION['userID'].")";
           //echo $q;
           $list = mysql_query($q);
           while ($row = mysql_fetch_array($list)) {
           ?>
-           <option id='<?php echo $row['ingredientid']; ?>'><?php echo $row['name']; ?></option>
+           <!--<option id='<?php echo $row['ingredientid']; ?>'><?php echo $row['name']; ?></option>-->
           <?php } ?>
-        </select>
       </td>
       <td>
         <input id ='quantity' class='input-small' type='number' min='1'/>
