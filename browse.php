@@ -12,16 +12,22 @@
     </thead>
     <tbody>
     <?php
-    $q = "SELECT mealid, name, firstname, madeon FROM meal NATURAL JOIN users where meal.creator=users.fbid";
+    $q = "SELECT creator, mealid, name, firstname, madeon FROM meal NATURAL JOIN users where meal.creator=users.fbid ORDER BY name";
     //echo $q;
     $meals = mysql_query($q);
     while($row = mysql_fetch_array($meals)) {
     ?>
       <tr class='meals' id='<?php echo $row['mealid']; ?>'>
         <td class='name'><? echo $row['name']; ?></td>
-        <td class='creator'><? echo $row['firstname']; ?></td>
-        <td class='madeon'><? echo date('F j, Y', strtotime($row['madeon'])); ?></td>
-        <td><button class='btn btn-primary' onclick='likeItem(this);'>Like</button></td>
+        <?php if($row['creator'] == $_SESSION['userID']) { ?> 
+          <td class='creator'><? echo 'You ('.$row['firstname'].')'; ?></td>
+          <td class='madeon'><? echo date('F j, Y', strtotime($row['madeon'])); ?></td>
+          <td><button class='btn' onclick='editMeal(this);'>Edit</button></td>
+        <?php } else { ?>
+          <td class='creator'><? echo $row['firstname']; ?></td>
+          <td class='madeon'><? echo date('F j, Y', strtotime($row['madeon'])); ?></td>
+          <td><button class='btn btn-primary' onclick='likeMeal(this);'>Like</button></td>
+        <?php } ?>
       </tr>
     <?php } ?>
     </tbody>

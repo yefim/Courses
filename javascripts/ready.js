@@ -7,13 +7,13 @@ $(document).ready(function() {
     $input.keypress(function(e) {
       if (e.which == 13) {
         var new_q = $(this).val();
-        var id = $(this).parent().parent()[0].id;
-        $(this).parent().html(new_q);
+        var ingredient = $(this).closest('tr').find('.name').text();
+        $(this).closest('td').html(new_q);
         //window.location = 'updateIngredient.php?id='+id+'&quantity='+new_q;
         $.ajax({
           type:'GET',
           url:'ingredients.php',
-          data: {'method':'update','id':id, 'quantity': new_q}
+          data: {'method':'update','ingredient':ingredient, 'quantity': new_q}
         });
       }
     });
@@ -23,5 +23,4 @@ $(document).ready(function() {
       $('#add').trigger('click');
     }
   });
-  $('#ingredients').typeahead();
 });

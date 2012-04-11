@@ -3,19 +3,23 @@
   include('mysql.php');
 
   $method = $_GET['method'];
+  $quantity = $_GET['quantity'];
+  $name = $_GET['ingredient'];
   $id = $_SESSION['userID'];
+  $query = "SELECT ingredientid FROM ingredients WHERE name='$name' LIMIT 1";
+  $ingredientid = array_pop(mysql_fetch_array(mysql_query($query)));
   switch($method) {
     case "delete":
-      $q = "DELETE FROM userhas WHERE FBid=".$id." AND ingredientid='".$_GET['id']."'";
+      $q = "DELETE FROM userhas WHERE FBid=$id AND ingredientid=$ingredientid";
       break;
     case "insert":
-      $q = "INSERT INTO userhas(FBid, ingredientid, quantity) VALUES(".$id.", ".$_GET['id'].", ".$_GET['quantity'].")";
+      $q = "INSERT INTO userhas(FBid, ingredientid, quantity) VALUES($id, $ingredientid, $quantity)";
       break;
     case "update":
-      $q = "UPDATE userhas SET quantity=".$_GET['quantity']." WHERE FBid=".$id." AND ingredientid='".$_GET['id']."'";
+      $q = "UPDATE userhas SET quantity=$quantity WHERE FBid=$id AND ingredientid=$ingredientid";
       break;
   }
   mysql_query($q);
-
+  echo $q;
   mysql_close($con)
 ?>

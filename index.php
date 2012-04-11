@@ -12,17 +12,17 @@
       <tr>
         <th>Name</th>
         <th>Quantity</th>
-        <th>Action</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
   <?php
-  $q = "SELECT i.ingredientid as id, name, quantity FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=" . $_SESSION['userID'];
+  $q = "SELECT name, quantity FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=" . $_SESSION['userID'];
   //echo $q;
   $ingredients = mysql_query($q);
   while($row = mysql_fetch_array($ingredients)) {
   ?>
-    <tr class='ingredient' id='<?php echo $row['id']; ?>'>
+    <tr class='ingredient'>
       <td class='name'><? echo $row['name']; ?></td>
       <td class='quantity'><? echo $row['quantity']; ?></td>
       <td><button class='btn btn-danger' onclick='removeItem(this);'>Remove</button></td>
@@ -31,14 +31,22 @@
     <tr class='item-row'>
       <td>
         <input id='ingredients' type='text' />
-          <?php
+        <?php
           $q = "SELECT * FROM ingredients WHERE ingredientid NOT IN (SELECT i.ingredientid FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=".$_SESSION['userID'].")";
           //echo $q;
+          $source = array();
           $list = mysql_query($q);
-          while ($row = mysql_fetch_array($list)) {
-          ?>
-           <!--<option id='<?php echo $row['ingredientid']; ?>'><?php echo $row['name']; ?></option>-->
+        ?>
+        <script type='text/javascript'>
+          var source = [];
+          <?php while ($row = mysql_fetch_array($list)) { ?>
+            source.push(<?php echo '"'.$row['name'].'"'; ?>);
           <?php } ?>
+          $('#ingredients').typeahead({
+            source: source,
+            items:8
+          });
+        </script>
       </td>
       <td>
         <input id ='quantity' class='input-small' type='number' min='1'/>
@@ -49,9 +57,30 @@
   </table>
 </div>
 
-<div id='likes' class='span6'>
-  <h2>Meals you like</h2>
+<div class='span6'>
+<h2>Meals you like</h2>
+<?php
+$q = "SELECT DISTINCT likes.mealid, meal.name, users.firstname FROM likes, meal,users WHERE likes.fbid=".$_SESSION['userID']." AND likes.mealid=meal.mealid AND users.fbid=meal.creator";
+$meals = mysql_query($q);
+if (mysql_num_rows($meals) == 0) { ?>
   <h4>You have not liked any meals yet.</h4>
+<?php } else { ?>
+  <table class='table' id='meals_table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Creator</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <?php while($row = mysql_fetch_array($meals)) { ?>
+    <tr class='meal' id='<?php echo $row['mealid']; ?>'>
+      <td class='meal_name'><? echo $row['name']; ?></td>
+      <td class='creator'><? echo $row['firstname']; ?></td>
+      <td><button class='btn' onclick='unlikeMeal(this);'>Unlike</button></td>
+    </tr>
+  <?php } ?>
+<?php } ?>
 </div>
 
-<?php include('footer.php'); ?>
