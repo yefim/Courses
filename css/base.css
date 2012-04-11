@@ -32,3 +32,6 @@ tr:hover {
 .ingredient .quantity {
   cursor: pointer;
 }
+.action {
+  width: 100px;
+}

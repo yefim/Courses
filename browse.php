@@ -7,7 +7,7 @@
         <th>Name</th>
         <th>Creator</th>
         <th>Made On</th>
-        <th></th>
+        <th class='action'></th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +26,16 @@
         <?php } else { ?>
           <td class='creator'><? echo $row['firstname']; ?></td>
           <td class='madeon'><? echo date('F j, Y', strtotime($row['madeon'])); ?></td>
-          <td><button class='btn btn-primary' onclick='likeMeal(this);'>Like</button></td>
+          <?php
+          $id = $_SESSION['userID'];
+          $q = "SELECT COUNT(mealid) FROM likes WHERE fbid=$id AND mealid=". $row['mealid'];
+          $liked = array_pop(mysql_fetch_array(mysql_query($q)));
+          if ($liked == 0) {
+          ?>
+            <td><button class='btn btn-primary' onclick='likeMeal(this);'>Like</button></td>
+          <?php } else { ?>
+            <td><button class='btn btn-info' onclick='unlike(this);'>Unike</button></td>
+          <?php } ?>
         <?php } ?>
       </tr>
     <?php } ?>

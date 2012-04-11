@@ -12,7 +12,7 @@
       <tr>
         <th>Name</th>
         <th>Quantity</th>
-        <th></th>
+        <th class='action'></th>
       </tr>
     </thead>
     <tbody>
@@ -70,7 +70,7 @@ if (mysql_num_rows($meals) == 0) { ?>
       <tr>
         <th>Name</th>
         <th>Creator</th>
-        <th></th>
+        <th class='action'></th>
       </tr>
     </thead>
     <tbody>
@@ -78,7 +78,7 @@ if (mysql_num_rows($meals) == 0) { ?>
     <tr class='meal' id='<?php echo $row['mealid']; ?>'>
       <td class='meal_name'><? echo $row['name']; ?></td>
       <td class='creator'><? echo $row['firstname']; ?></td>
-      <td><button class='btn' onclick='unlikeMeal(this);'>Unlike</button></td>
+      <td><button class='btn btn-info' onclick='unlikeMeal(this);'>Unlike</button></td>
     </tr>
   <?php } ?>
 <?php } ?>

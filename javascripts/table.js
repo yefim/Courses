@@ -27,7 +27,7 @@ var addItem = function(element) {
 }
 var likeMeal = function(element) {
   var id = $(element).closest('tr')[0].id;
-  $(element).replaceWith('liked');
+  $(element).replaceWith("<button class='btn btn-info' onclick='unlike(this);'>Unlike</button>");
   $.ajax({
     type:'GET',
     url:'meals.php',
@@ -43,8 +43,16 @@ var unlikeMeal = function(element) {
   if (row_count === 1) {
     $table.replaceWith("<h4>You have not liked any meals yet.</h4>");
   }
-
-  console.log(row_count);
+  $.ajax({
+    type:'GET',
+    url:'meals.php',
+    data: {'method':'unlike','id':id}
+  });
+}
+var unlike = function(element) {
+  var $row = $(element).closest('tr');
+  $(element).replaceWith("<button class='btn btn-primary' onclick='likeMeal(this);'>Like</button>");
+  var id = $row[0].id;
   $.ajax({
     type:'GET',
     url:'meals.php',
