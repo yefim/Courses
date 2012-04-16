@@ -11,20 +11,18 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Quantity</th>
         <th class='action'></th>
       </tr>
     </thead>
     <tbody>
   <?php
-  $q = "SELECT i.ingredientid as id, i.name, quantity FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=" . $_SESSION['userID'];
+  $q = "SELECT i.ingredientid as id, i.name FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=" . $_SESSION['userID'];
   //echo $q;
   $ingredients = mysql_query($q);
   while($row = mysql_fetch_array($ingredients)) {
   ?>
     <tr class='ingredient'>
       <td class='name'><? echo $row['name']; ?></td>
-      <td class='quantity'><? echo $row['quantity']; ?></td>
       <td><button class='btn btn-danger' onclick='removeItem(this);'>Remove</button></td>
     </tr>
   <?php } ?>
@@ -47,9 +45,6 @@
             items:8
           });
         </script>
-      </td>
-      <td>
-        <input id ='quantity' class='input-small' type='number' min='1'/>
       </td>
       <td><button id ='add' class='btn' onclick='addItem(this);'>Add</button></td>
     </tr>
