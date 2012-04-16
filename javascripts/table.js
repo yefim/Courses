@@ -11,18 +11,16 @@ var removeItem = function(element) {
 }
 var addItem = function(element) {
   var $row = $(element).closest('tr');
-  var quantity = $row.find('#quantity').val();
   var ingredient = $row.find('#ingredients').val();
   var row = "<tr class='ingredient'>" +
               "<td class='name'>"+ingredient+"</td>" +
-              "<td class='quantity'>"+quantity+"</td>" +
               "<td><button class='btn btn-danger' onclick='removeItem(this);'>Remove</button></td>";
   $('#ingredients_table tbody tr:last').before(row);
   $row.find('input').val('');
   $.ajax({
     type:'GET',
     url:'ingredients.php',
-    data: {'method':'insert','ingredient':ingredient, 'quantity':quantity}
+    data: {'method':'insert','ingredient':ingredient}
   });
 }
 var likeMeal = function(element) {
