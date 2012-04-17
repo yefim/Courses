@@ -9,11 +9,12 @@
 	$row = mysql_fetch_array($result);
 	$recipeID = $row['Auto_increment'];
 	$dishID = $_POST["dishID"];
+	$creator = $_SESSION['userID'];
 	$ingredients = $_POST["ingredients"];
 	
 	mysql_query("INSERT INTO recipe " .
-	"(name, instructions, preptime, cooktime, dishid) VALUES " .
-	"('$recipeName', '$instructions', $prepTime, $cookTime, $dishID)");
+	"(name, instructions, preptime, cooktime, dishid, creator) VALUES " .
+	"('$recipeName', '$instructions', $prepTime, $cookTime, $dishID, '$creator')");
 	
 	foreach ($ingredients as $value) {
 		mysql_query("INSERT INTO usedin (RECIPEID, INGREDIENTID) " .
