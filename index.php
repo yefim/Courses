@@ -53,30 +53,32 @@
 </div>
 
 <div class='span6'>
-<h2>Meals you like</h2>
-<?php
-$q = "SELECT DISTINCT likes.mealid, meal.name, users.firstname FROM likes, meal,users WHERE likes.fbid=".$_SESSION['userID']." AND likes.mealid=meal.mealid AND users.fbid=meal.creator";
-$meals = mysql_query($q);
-if (mysql_num_rows($meals) == 0) { ?>
-  <h4>You have not liked any meals yet.</h4>
-<?php } else { ?>
-  <table class='table' id='meals_table'>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Creator</th>
-        <th class='action'></th>
-      </tr>
-    </thead>
-    <tbody>
-  <?php while($row = mysql_fetch_array($meals)) { ?>
-    <tr class='meal' id='<?php echo $row['mealid']; ?>'>
-      <td class='meal_name'><? echo $row['name']; ?></td>
-      <td class='creator'><? echo $row['firstname']; ?></td>
-      <td><button class='btn btn-info' onclick='unlikeMeal(this);'>Unlike</button></td>
-    </tr>
-  <?php } ?>
-<?php } ?>
+  <h2>Meals you like</h2>
+  <?php
+    $q = "SELECT DISTINCT likes.mealid, meal.name, users.firstname FROM likes, meal,users WHERE likes.fbid=".$_SESSION['userID']." AND likes.mealid=meal.mealid AND users.fbid=meal.creator";
+    $meals = mysql_query($q);
+    if (mysql_num_rows($meals) == 0) { ?>
+      <h4>You have not liked any meals yet.</h4>
+    <?php } else { ?>
+      <table class='table' id='meals_table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Creator</th>
+            <th class='action'></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php while($row = mysql_fetch_array($meals)) { ?>
+            <tr class='meal' id='<?php echo $row['mealid']; ?>'>
+              <td class='meal_name'><? echo $row['name']; ?></td>
+              <td class='creator'><? echo $row['firstname']; ?></td>
+              <td><button class='btn btn-info' onclick='unlikeMeal(this);'>Unlike</button></td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+    <?php } ?>
 </div>
 
 <?php include('footer.php'); ?>
