@@ -17,7 +17,7 @@
 	Cook Time:
 	<input name="cookTime" type=text size="3" maxlength="3"><br> <!-- accept only ints -->
 	DishID:
-	<select name="dishID[]" data-placeholder="Choose a dish" class="chzn-select" style="width:350px;" tabindex="2">
+	<select name="dishID" data-placeholder="Choose a dish" class="chzn-select" style="width:350px;" tabindex="2">
 		<option value=""></option>
 	<?php
 	while($row = mysql_fetch_array($dishes)) {
@@ -37,10 +37,10 @@
 	<?php
 	}
 	?>
-	</select>
-	<div id='buttons'>
-	<button class='btn btn-primary'>Add this Recipe</button>
-	</div>
+	</select><br>
+	<input type="submit" value="Add this Recipe"><br>
+
 </form>
+</div>
 
 <?php include('footer.php'); ?>

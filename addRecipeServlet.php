@@ -9,12 +9,19 @@
 	$row = mysql_fetch_array($result);
 	$recipeID = $row['Auto_increment'];
 	$dishID = $_POST["dishID"];
+	$ingredients = $_POST["ingredients"];
 	
-	mysql_query("INSERT INTO recipes
-	(NAME, INSTRUCTIONS, PREPTIME, COOKTIME, DISHID) VALUES
-	($recipeName, $instructions, $prepTime, $cookTime, $dishID)";
+	mysql_query("INSERT INTO recipe " .
+	"(name, instructions, preptime, cooktime, dishid) VALUES " .
+	"('$recipeName', '$instructions', $prepTime, $cookTime, $dishID)");
 	
-	// Input ingredients
-	//   Add to usedin 
+	foreach ($ingredients as $value) {
+		mysql_query("INSERT INTO usedin (RECIPEID, INGREDIENTID) " .
+					"VALUES ($recipeID, $value)");
+	}
+	
+	echo "Thank you!\n";
 		
 ?>
+
+<?php include('footer.php'); ?>
