@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 	  <link rel="stylesheet" type="text/css" href="chosen/chosen.css" />
     <link rel="stylesheet" type="text/css" href="css/base.css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="spinner.js"></script>
   </head>
   <body>
     <?php include('navbar.php') ?>
