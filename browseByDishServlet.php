@@ -18,7 +18,10 @@
     </thead>
     <tbody>
   <?php
-  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions FROM recipe r WHERE r.dishid=" . $dishID . " ORDER BY r.name";
+  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions " .
+	   "FROM recipe r " . // gets all recipes of that dish
+	   "WHERE r.dishid=" . $dishID . " " .
+	   "ORDER BY r.name";
   $recipes = mysql_query($q);
   while($row = mysql_fetch_array($recipes)) {
   ?>

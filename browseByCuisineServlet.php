@@ -19,7 +19,14 @@
     </thead>
     <tbody>
   <?php
-  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions, d.name as dname FROM recipe r, dish d WHERE r.dishid=d.dishid AND r.dishid IN (SELECT dc.dishid FROM dishtocuisine dc WHERE dc.cuisineid=" . $cuisineID . ") ORDER BY d.name";
+  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions, d.name as dname " .
+	   "FROM recipe r, dish d " . // gets all recipes related to the found dishes
+	   "WHERE r.dishid=d.dishid AND r.dishid IN " .
+			"(SELECT dc.dishid " .
+			"FROM dishtocuisine dc " . // gets all dishes for that cuisine
+			"WHERE dc.cuisineid=" . $cuisineID . 
+			") " .
+	   "ORDER BY d.name";
   $recipes = mysql_query($q);
   while($row = mysql_fetch_array($recipes)) {
   ?>

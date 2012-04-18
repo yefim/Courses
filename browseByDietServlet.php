@@ -18,7 +18,17 @@
     </thead>
     <tbody>
   <?php
-  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions FROM recipe r WHERE r.recipeid NOT IN (SELECT DISTINCT u.recipeid FROM usedin u WHERE u.ingredientid IN (SELECT DISTINCT rd.ingredientid FROM restricted rd WHERE rd.dietid=" . $dietID . ")) ORDER BY r.name";
+  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions " . 
+	   "FROM recipe r " . // returns all recipeids that are not in the below
+	   "WHERE r.recipeid NOT IN " .
+			"(SELECT DISTINCT u.recipeid " .
+			"FROM usedin u " . // returns all recipeids in usedin that correspond to ingredients from diet
+			"WHERE u.ingredientid IN " .
+				"(SELECT DISTINCT rd.ingredientid " .
+				"FROM restricted rd " . // returns all ingredients from diet
+				"WHERE rd.dietid=" . $dietID . ")" .
+			")" .
+	   "ORDER BY r.name";
   $recipes = mysql_query($q);
   while($row = mysql_fetch_array($recipes)) {
   ?>
