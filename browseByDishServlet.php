@@ -1,12 +1,12 @@
 <?php include('header.php'); ?>
+
 <?php
-  if(!isset($_SESSION['userID'])) {
-    header('Location: login.php');
-    die();
-  }
+	$dishID = $_POST["dishID"];		
+	$sum = mysql_query("SELECT COUNT(*) AS sum FROM recipe r WHERE r.dishid=" . $dishID . " ORDER BY r.name");
+	$rowsum = mysql_fetch_array($sum);
 ?>
 <div class='span12'>
-  <h2>Recipes you made</h2>
+  <h2><?php echo $rowsum['sum']; ?> Recipe(s) Found By Dish</h2>
   <table class='table' id='recipe_table'>
     <thead>
       <tr>
@@ -14,12 +14,11 @@
 		<th>Prep Time</th>
 		<th>Cook Time</th>
 		<th>Instructions</th>
-        <!--th class='action'></th-->
       </tr>
     </thead>
     <tbody>
   <?php
-  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions FROM recipe r WHERE creator=" . $_SESSION['userID'];
+  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions FROM recipe r WHERE r.dishid=" . $dishID . " ORDER BY r.name";
   $recipes = mysql_query($q);
   while($row = mysql_fetch_array($recipes)) {
   ?>
@@ -35,6 +34,5 @@
     </tbody>
   </table>
 </div>
-
 
 <?php include('footer.php'); ?>

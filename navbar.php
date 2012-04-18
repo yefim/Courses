@@ -16,6 +16,17 @@
 		          <li id='addIngredient'><a href="createingredient.php">Ingredient</a></li>
             </ul>
           </li>
+          <li class='dropdown' id='browsemenu'>
+            <a class='dropdown-toggle' data-toggle='dropbox' href='browsemenu'>
+              Browse Recipes<b class='caret'></b>
+            </a>
+            <ul class='dropdown-menu'>
+		          <li id='browseByCuisine'><a href="browseByCuisine.php">By Cuisine</a></li>
+		          <li id='browseByDish'><a href="browseByDish.php">By Dish</a></li>
+		          <li id='browseByDiet'><a href="browseByDiet.php">By Diet</a></li>
+            </ul>
+          </li>		  
+		  <li id='yourRecipes'><a href="recipesMade.php">Your Recipes</a></li>
           <script type='text/javascript'>
             $('.dropdown-toggle').dropdown();
           </script>
