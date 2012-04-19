@@ -1,7 +1,7 @@
 <?php include('header.php'); ?>
 <?php
   if(!isset($_SESSION['userID'])) {
-    header('Location: login.php');
+    header('Location: login');
     die();
   }
 ?>
