@@ -1,5 +1,5 @@
 
-<script src="chosen/chosen.jquery.js" type="text/javascript"></script>
+<script src="/courses/chosen/chosen.jquery.js" type="text/javascript"></script>
 <script type="text/javascript"> $(".chzn-select").chosen();</script>
 
       <footer>
