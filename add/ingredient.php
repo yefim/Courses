@@ -1,11 +1,5 @@
 <?php include('../header.php'); ?>
-<div class='header'>
-  <h1>
-    Your Kingdom
-    <small class='small'>Welcome, <?php echo $_SESSION['first']; ?>!</small>
-  </h1>
-</div>
-
+<?php create_header('Your Kingdom'); ?>
 <?php 
 	$q = "SELECT * FROM diet ORDER BY name";
 	$diets = mysql_query($q);

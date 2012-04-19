@@ -5,12 +5,7 @@
     die();
   }
 ?>
-<div class='header'>
-  <h1>
-    Your Kingdom
-    <small class='small'>Welcome, <?php echo $_SESSION['first']; ?>!</small>
-  </h1>
-</div>
+<?php create_header('Your Kingdom'); ?>
 <div class='span4 index-column'>
   <h2>Recipes you've made</h2>
 </div>

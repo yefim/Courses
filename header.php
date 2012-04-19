@@ -1,6 +1,7 @@
 <?php
   session_start();
   include('mysql.php');
+  include('functions.php');
 ?>
 <html>
   <head>
