@@ -1,46 +1,42 @@
 <?php include('../header.php'); ?>
+<div class='header'>
+  <h1>
+    Your Kingdom
+    <small class='small'>Welcome, <?php echo $_SESSION['first']; ?>!</small>
+  </h1>
+</div>
 
 <?php 
-	$q = "SELECT * FROM Diet ORDER BY name";
+	$q = "SELECT * FROM diet ORDER BY name";
 	$diets = mysql_query($q);
 
 ?>
-
-<h2> Add an Ingredient:</h2> 
-<br/>
-  <table class='table'>
-    <thead>
-      <tr>
-		<th>Ingredient Name</th>
-	  </tr>
-    </thead>
-   </table>
-	
-<form name="addIngredient" action="addIngredient.php" method="post">
-	<input name="ingredientName" type=text size="50" maxlength="300"><br><br>
-	
-	  <table class='table'>
-    <thead>
-      <tr>
-		<th>Follows All Dietary Restrictions Except For:</th>
-	  </tr>
-    </thead>
-   </table>
-   
-   	<select name="dietaryrestrictions[]" data-placeholder="Follows All Dietary Restrictions Except For:" class="chzn-select" multiple style="width:350px;" tabindex="4">
-		<option value=""></option>
-	<?php
-	while($row = mysql_fetch_array($diets)) {
-	?>
-		<option value="<?php echo $row['dietid'];?>"><?php echo $row['name'];?></option>
-	<?php
-	}
-	?>
-	</select>
-	<div id='buttons'>
-  <button class='btn btn-primary'>Add this Ingredient</button>
-</div>
+<form action='ingredient.php' method='post' class='form-horizontal'>
+  <div class='section-header'>
+    <h2>Add an Ingredient<small>Create a new Ingredient</small></h2>
+  </div>
+  <div class='section-content'>
+    <fieldset>
+      <div class="control-group">
+        <label for="ingredientname" class="control-label">Ingredient Name:</label>
+        <div class="controls">
+          <input type="text" name='name' id="ingredientname" class="input-xlarge">
+          <p class="help-block">Enter name of Ingredient</p>
+        </div>
+      </div>
+      <div class='control-group'>
+        <label for='cuisinetype' class='control-label'>Does NOT Follow these Restrictions:</label>
+        <div class='controls'>
+          <select id='cuisinetype' class='chzn-select' name="cuisinechoice[]" multiple='multiple'>
+  	        <?php while($row = mysql_fetch_array($diets)) { ?>
+              <option id="<?php echo $row['dietid'];?>"><?php echo $row['name'];?></option>
+            <?php } ?>
+  	      </select>
+          <p class='help-block'>Select which dietary restrictions it doesn't follow</p>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <button onclick='addDish(this)' class='btn btn-primary'>Add Ingredient</button>
 </form>
-</div>
-
 <?php include('../footer.php'); ?>

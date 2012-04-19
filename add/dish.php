@@ -1,6 +1,12 @@
-<?php
-  include('../header.php');
+<?php include('../header.php'); ?>
+<div class='header'>
+  <h1>
+    Your Kingdom
+    <small class='small'>Welcome, <?php echo $_SESSION['first']; ?>!</small>
+  </h1>
+</div>
 
+<?php
   if(isset($_POST['name'])) {
     $dishname = $_POST['name'];
     $sql = "SHOW TABLE STATUS LIKE 'dish'";
@@ -62,7 +68,7 @@
               <option id="<?php echo $row['cuisineid'];?>"><?php echo $row['name'];?></option>
             <?php } ?>
   	      </select>
-          <p class='help-block'>Select cuisines to fit the dish</p>
+          <p class='help-block'>Select cuisines that fit the dish</p>
         </div>
       </div>
     </fieldset>

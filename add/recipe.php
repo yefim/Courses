@@ -1,4 +1,10 @@
 <?php include('../header.php'); ?>
+<div class='header'>
+  <h1>
+    Your Kingdom
+    <small class='small'>Welcome, <?php echo $_SESSION['first']; ?>!</small>
+  </h1>
+</div>
 
 <?php
 	$dishes = mysql_query("SELECT * FROM dish ORDER BY name");

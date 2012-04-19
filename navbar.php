@@ -1,9 +1,9 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
+      <a href='<?php echo ROOT ?>/index.php' class='brand'>King's Courses</a>
       <div class="nav-collapse">
         <ul class="nav">
-        <li id='index'><a href="<?php echo ROOT ?>/index.php">Home</a></li>
           <li id='browse'><a href="<?php echo ROOT ?>/browse.php">Browse Meals</a></li>
           <li id='build'><a href="<?php echo ROOT ?>/build.php">Build a Meal</a></li>
           <li class='dropdown' id='addmenu'>

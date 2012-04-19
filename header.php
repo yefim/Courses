@@ -21,11 +21,3 @@
   <body>
     <?php include('navbar.php'); ?>
     <div id='wrapper'>
-    <div class='header'>
-      <h1>
-        King's Courses
-        <?php if(isset($_SESSION['userID'])) { ?>
-          <small class='small'>Welcome, <?php echo $_SESSION['first']; ?>!</small>
-        <?php } ?>
-      </h1>
-    </div>

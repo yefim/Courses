@@ -1,4 +1,10 @@
 <?php include('header.php'); ?>
+<div class='header'>
+  <h1>
+    Browse Meals
+    <small class='small'>Welcome, <?php echo $_SESSION['first']; ?>!</small>
+  </h1>
+</div>
 <div>
   <h2>Meals</h2>
   <table class='table' id='meals_table'>
