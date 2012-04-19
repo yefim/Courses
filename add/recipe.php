@@ -7,7 +7,7 @@
 
 <h1> Add a Recipe:</h1>
 
-<form name="addRecipe" action="addRecipeServlet.php" method="post">
+<form name="addRecipe" action="recipe.php" method="post">
 	Recipe Name:
 	<input name="recipeName" type=text size="50" maxlength="300"><br>
 	Instructions:<br>

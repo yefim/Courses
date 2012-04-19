@@ -10,6 +10,8 @@
     <script type='text/javascript' src='<?php echo ROOT ?>/javascripts/ready.js'></script>
     <script type='text/javascript' src='<?php echo ROOT ?>/javascripts/bootstrap-typeahead.js'></script>
     <script type='text/javascript' src='<?php echo ROOT ?>/javascripts/bootstrap-dropdown.js'></script>
+    <script type='text/javascript' src='<?php echo ROOT ?>/javascripts/bootstrap-alert.js'></script>
+    <script src="<?php echo ROOT ?>/chosen/chosen.jquery.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/bootstrap.css" />
 	  <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/chosen/chosen.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/base.css" />
