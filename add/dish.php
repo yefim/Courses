@@ -18,25 +18,13 @@
         foreach ($cuisinelist as $value) {
           mysql_query("INSERT INTO dishtocuisine (dishid, cuisineid) VALUES ($next_id, $value)");
         }	
-      } ?>
-      <div class="alert alert-success">
-        <a class="close" data-dismiss="alert">x</a>
-        <h4 class="alert-heading">Success!</h4>
-        Your dish has been added.
-      </div>
-    <?php } else if ($contains != null) { ?>
-      <div class="alert">
-        <a class="close" data-dismiss="alert">x</a>
-        <h4 class="alert-heading">Warning!</h4>
-        Dish already exists.
-      </div>
-    <?php } else { ?>
-      <div class="alert alert-error">
-        <a class="close" data-dismiss="alert">x</a>
-        <h4 class="alert-heading">Error!</h4>
-        Please provide a name for the dish.
-      </div>
-    <?php }
+      }
+      success("Your dish ($dishname) has been added.");
+    } else if ($contains != null) {
+      warning("Dish ($dishname) already exists.");
+    } else {
+      error('Please provide a name for the dish.');
+    }
   }
   $q = "SELECT * FROM cuisine";
   $cuisines = mysql_query($q);

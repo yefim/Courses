@@ -1,6 +1,29 @@
 <?php include('../header.php'); ?>
 <?php create_header('Your Kingdom'); ?>
 <?php 
+  if (isset($_POST['name'])) {
+    $ingredientname = $_POST["name"];
+    $sql = "SHOW TABLE STATUS LIKE 'ingredients'";
+    $result = mysql_query($sql);
+    $row = mysql_fetch_array($result);
+    $next_id = $row['Auto_increment'];
+    $contains = mysql_query("SELECT * FROM ingredients WHERE name= $ingredientname");
+    
+    if($ingredientname != null && $contains == null) {
+      mysql_query("INSERT INTO ingredients (name) VALUES ('$ingredientname')");
+      if (isset($_POST["dietaryrestrictions"])) {
+        $dietarylist = $_POST["dietaryrestrictions"];
+        foreach ($dietarylist as $value) {
+          mysql_query("INSERT INTO restricted (dietid, ingredientid) VALUES ($value, $next_id)");
+        }
+      } 
+      success("Your ingredient ($ingredientname) has been added.");
+    } else if ($contains != null) {
+      warning("Ingredient ($ingredientname) already exists.");
+    } else {
+      error('Please provide a name for the ingredient.');
+    }
+  }
 	$q = "SELECT * FROM diet ORDER BY name";
 	$diets = mysql_query($q);
 
