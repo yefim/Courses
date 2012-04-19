@@ -35,14 +35,14 @@
   <div class='section-content'>
     <fieldset>
       <div class="control-group">
-        <label for="ingredientname" class="control-label">Ingredient Name:</label>
+        <label for="ingredientname" class="control-label">Ingredient Name</label>
         <div class="controls">
-          <input type="text" name='name' id="ingredientname" class="input-xlarge">
+          <input type="text" name='name' id="ingredientname" class="input-xlarge"/>
           <p class="help-block">Enter name of Ingredient</p>
         </div>
       </div>
       <div class='control-group'>
-        <label for='cuisinetype' class='control-label'>Does NOT Follow these Restrictions:</label>
+        <label for='cuisinetype' class='control-label'>Does NOT Follow</label>
         <div class='controls'>
           <select id='cuisinetype' class='chzn-select' name="cuisinechoice[]" multiple='multiple'>
   	        <?php while($row = mysql_fetch_array($diets)) { ?>
@@ -54,6 +54,6 @@
       </div>
     </fieldset>
   </div>
-  <button onclick='addDish(this)' class='btn btn-primary'>Add Ingredient</button>
+  <button class='btn btn-primary'>Add Ingredient</button>
 </form>
 <?php include('../footer.php'); ?>

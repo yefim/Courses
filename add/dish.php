@@ -38,7 +38,7 @@
       <div class="control-group">
         <label for="dishname" class="control-label">Dish Name</label>
         <div class="controls">
-          <input type="text" name='name' id="dishname" class="input-xlarge">
+          <input type="text" name='name' id="dishname" class="input-xlarge"/>
           <p class="help-block">Enter name of Dish</p>
         </div>
       </div>
@@ -55,6 +55,6 @@
       </div>
     </fieldset>
   </div>
-  <button onclick='addDish(this)' class='btn btn-primary'>Add this Dish</button>
+  <button class='btn btn-primary'>Add this Dish</button>
 </form>
 <?php include('../footer.php'); ?>
