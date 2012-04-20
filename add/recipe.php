@@ -1,8 +1,32 @@
 <?php include('../header.php'); ?>
 <?php create_header('Your Kingdom'); ?>
 <?php
-	$dishes = mysql_query("SELECT * FROM dish ORDER BY name");
-	$ingredients = mysql_query("SELECT * FROM ingredients ORDER BY name");
+  if (isset($_POST['name'])) {
+	  $recipeName = $_POST["name"];
+	  $instructions = $_POST["instructions"];
+	  $prepTime = $_POST["prepTime"];
+	  $cookTime = $_POST["cookTime"];
+	  $result = mysql_query("SHOW TABLE STATUS LIKE 'recipe'");
+	  $row = mysql_fetch_array($result);
+	  $recipeID = $row['Auto_increment'];
+	  $dishID = $_POST["dishID"];
+	  $creator = $_SESSION['userID'];
+	  $ingredients = $_POST["ingredients"];
+    $q = "INSERT INTO recipe " .
+	        "(name, instructions, preptime, cooktime, dishid, creator) VALUES " .
+	        "(\"$recipeName\", \"$instructions\", $prepTime, $cookTime, $dishID, \"$creator\")";
+    error($q);
+
+	  mysql_query($q);
+	  
+	  foreach ($ingredients as $value) {
+	  	mysql_query("INSERT INTO usedin (RECIPEID, INGREDIENTID) " .
+	  				"VALUES ($recipeID, $value)");
+	  }
+    success("Your recipe ($recipeName) has been added.");	
+  }
+  $dishes = mysql_query("SELECT * FROM dish ORDER BY name");
+  $ingredients = mysql_query("SELECT * FROM ingredients ORDER BY name");
 ?>
 <form action='recipe.php' method='post' class='form-horizontal'>
   <div class='section-header'>
@@ -38,15 +62,15 @@
       <div class="control-group">
         <label for="preptime" class="control-label">Prep Time</label>
         <div class="controls">
-          <input type='number' placeholder='In hours...' step='0.5' min='0.5' name='prepTime' id="preptime" class='input-small'/>
-          <p class="help-block">Round to the nearest half hour</p>
+          <input type='number' placeholder='In mins...' step='15' min='0' name='prepTime' id="preptime" class='input-small'/>
+          <p class="help-block">Round to the nearest 15 min</p>
         </div>
       </div>
       <div class="control-group">
         <label for="cooktime" class="control-label">Cook Time</label>
         <div class="controls">
-          <input type='number' placeholder='In hours...' step='0.5' min='0.5' name='cookTime' id="cooktime" class='input-small'/>
-          <p class="help-block">Round to the nearest half hour</p>
+          <input type='number' placeholder='In mins...' step='15' min='0' name='cookTime' id="cooktime" class='input-small'/>
+          <p class="help-block">Round to the nearest 15 min</p>
         </div>
       </div>
       <div class='control-group'>
