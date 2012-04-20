@@ -14,7 +14,7 @@
 		<th>Prep Time</th>
 		<th>Cook Time</th>
 		<th>Instructions</th>
-        <!--th class='action'></th-->
+        <th class='action'></th>
       </tr>
     </thead>
     <tbody>
@@ -28,6 +28,7 @@
       <td class='prep'><?php echo $row['prepTime']; ?></td>
       <td class='cook'><?php echo $row['cookTime']; ?></td>
       <td class='insn'><?php echo $row['instructions']; ?></td>
+	  <td><form name="editRecipe" action="editRecipes.php" method="post"><input name="recipeID" type="hidden" value="<?php echo $row['id'] ?>"><button class='btn' onclick(submit)>Edit</button></form></td>
     </tr>
   <?php
   }
