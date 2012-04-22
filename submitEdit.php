@@ -21,4 +21,9 @@
 		
 ?>
 
+<!--?php header('Location: recipesMade.php');
+REDIRECT HERE
+DELETE HEADER AND FOOTER
+?-->
+
 <?php include('footer.php'); ?>
