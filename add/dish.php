@@ -10,8 +10,12 @@
 
     $contains = mysql_query("SELECT * FROM Dish WHERE name= $dishname");
 
+    $category = $_POST['category'];
+    $query = "SELECT categoryid FROM category WHERE categoryname='$category' LIMIT 1";
+    $categoryid = array_pop(mysql_fetch_array(mysql_query($query)));
+
     if($dishname != null && $contains == null) {
-      mysql_query("INSERT INTO dish (name) VALUES ('$dishname')");
+      mysql_query("INSERT INTO dish (name, categoryid) VALUES ('$dishname', $categoryid)");
       //Problem if no cuisines are selected
       if (isset($_POST["cuisinechoice"])) {
         $cuisinelist = $_POST["cuisinechoice"];
@@ -26,8 +30,10 @@
       error('Please provide a name for the dish.');
     }
   }
-  $q = "SELECT * FROM cuisine";
-  $cuisines = mysql_query($q);
+  $q1 = "SELECT * FROM cuisine";
+  $cuisines = mysql_query($q1);
+  $q2 = "SELECT * FROM category";
+  $categories = mysql_query($q2);
 ?>
 <form action='dish.php' method='post' class='form-horizontal'>
   <div class='section-header'>
@@ -51,6 +57,17 @@
             <?php } ?>
   	      </select>
           <p class='help-block'>Select cuisines that fit the dish</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="category" class="control-label">Category</label>
+        <div class="controls">
+          <select name='category' id='category' class='chzn-select'>
+            <?php while($row = mysql_fetch_array($categories)) { ?>
+              <option><?php echo $row['categoryname'] ?></option>
+            <?php } ?>
+          </select>
+          <p class="help-block">Enter the dish's category</p>
         </div>
       </div>
     </fieldset>
