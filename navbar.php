@@ -5,7 +5,7 @@
       <div class="nav-collapse">
         <ul class="nav">
           <li id='browse'><a href="<?php echo ROOT ?>/list.php">List Meals</a></li>
-          <li id='build'><a href="<?php echo ROOT ?>/build.php">Build a Meal</a></li>
+          <li id='build'><a href="<?php echo ROOT ?>/buildmeal.php">Build a Meal</a></li>
           <li class='dropdown' id='addmenu'>
             <a class='dropdown-toggle' data-toggle='dropbox' href='addmenu'>
               Add<b class='caret'></b>

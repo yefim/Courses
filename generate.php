@@ -2,23 +2,23 @@
 <?php 
 	$wantIngArray = array("appet"=>array(), "main"=>array(), "des"=>array());
 	for ($i = 0; $i < $_GET['numAppet']; $i++) {
-       $wantIngArray['appet'][$i] = mysql_query("SELECT * FROM Ingredients ORDER BY Ingredients.name");
+       $wantIngArray['appet'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
    }
    	for ($i = 0; $i < $_GET['numMain']; $i++) {
-       $wantIngArray['main'][$i] = mysql_query("SELECT * FROM Ingredients ORDER BY Ingredients.name");
+       $wantIngArray['main'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
    }
    	for ($i = 0; $i < $_GET['numDes']; $i++) {
-       $wantIngArray['des'][$i] = mysql_query("SELECT * FROM Ingredients ORDER BY Ingredients.name");
+       $wantIngArray['des'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
    }
    	$uWantIngArray = array("appet"=>array(), "main"=>array(), "des"=>array());
 	for ($i = 0; $i < $_GET['numAppet']; $i++) {
-       $uWantIngArray['appet'][$i] = mysql_query("SELECT * FROM Ingredients ORDER BY Ingredients.name");
+       $uWantIngArray['appet'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
    }
    	for ($i = 0; $i < $_GET['numMain']; $i++) {
-       $uWantIngArray['main'][$i] = mysql_query("SELECT * FROM Ingredients ORDER BY Ingredients.name");
+       $uWantIngArray['main'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
    }
    	for ($i = 0; $i < $_GET['numDes']; $i++) {
-       $uWantIngArray['des'][$i] = mysql_query("SELECT * FROM Ingredients ORDER BY Ingredients.name");
+       $uWantIngArray['des'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
    }
 	?>
 

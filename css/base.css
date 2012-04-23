@@ -4,6 +4,15 @@ a:hover {text-decoration: none; }
 small {
   padding-left: 5px;
 }
+.recipes label {
+  cursor: pointer;
+}
+.recipes .info span {
+  color: #08C;
+}
+.recipes .help-block {
+  margin-bottom: 14px;
+}
 .index-column {
   /*margin-left: 0;
   padding-left: 19px;
