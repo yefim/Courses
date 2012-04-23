@@ -26,7 +26,7 @@
 		          <li id='browseByDiet'><a href="<?php echo ROOT ?>/browseByDiet.php">By Diet</a></li>
             </ul>
           </li>		  
-		  <li id='yourRecipes'><a href="<?php echo ROOT ?>/recipesMade.php">Your Recipes</a></li>
+		  <li id='yourRecipes'><a href="<?php echo ROOT ?>/recipes.php">Your Recipes</a></li>
           <script type='text/javascript'>
             $('.dropdown-toggle').dropdown();
           </script>
