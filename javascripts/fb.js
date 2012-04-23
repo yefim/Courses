@@ -30,9 +30,9 @@ window.fbAsyncInit = function() {
   FB.Event.subscribe('auth.logout', function(response) {
     $.ajax({
       type: 'POST',
-      url: 'Logout'
+      url: 'logout.php'
     }).done(function(response) {
-      window.location = "index.jsp";
+      window.location = "login.php";
     });
   });
  FB.getLoginStatus(function(response) {

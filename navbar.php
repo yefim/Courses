@@ -4,16 +4,16 @@
       <a href='<?php echo ROOT ?>/' class='brand'>King's Courses</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li id='browse'><a href="<?php echo ROOT ?>/list">List Meals</a></li>
-          <li id='build'><a href="<?php echo ROOT ?>/build">Build a Meal</a></li>
+          <li id='browse'><a href="<?php echo ROOT ?>/list.php">List Meals</a></li>
+          <li id='build'><a href="<?php echo ROOT ?>/build.php">Build a Meal</a></li>
           <li class='dropdown' id='addmenu'>
             <a class='dropdown-toggle' data-toggle='dropbox' href='addmenu'>
               Add<b class='caret'></b>
             </a>
             <ul class='dropdown-menu'>
-		          <li id='addDish'><a href="<?php echo ROOT ?>/add/dish">Dish</a></li>
-		          <li id='addRecipe'><a href="<?php echo ROOT ?>/add/recipe">Recipe</a></li>
-		          <li id='addIngredient'><a href="<?php echo ROOT ?>/add/ingredient">Ingredient</a></li>
+		          <li id='addDish'><a href="<?php echo ROOT ?>/add/dish.php">Dish</a></li>
+		          <li id='addRecipe'><a href="<?php echo ROOT ?>/add/recipe.php">Recipe</a></li>
+		          <li id='addIngredient'><a href="<?php echo ROOT ?>/add/ingredient.php">Ingredient</a></li>
             </ul>
           </li>
           <li class='dropdown' id='browsemenu'>
@@ -21,12 +21,12 @@
               Browse Recipes<b class='caret'></b>
             </a>
             <ul class='dropdown-menu'>
-		          <li id='browseByCuisine'><a href="<?php echo ROOT ?>/browseByCuisine">By Cuisine</a></li>
-		          <li id='browseByDish'><a href="<?php echo ROOT ?>/browseByDish">By Dish</a></li>
-		          <li id='browseByDiet'><a href="<?php echo ROOT ?>/browseByDiet">By Diet</a></li>
+		          <li id='browseByCuisine'><a href="<?php echo ROOT ?>/browseByCuisine.php">By Cuisine</a></li>
+		          <li id='browseByDish'><a href="<?php echo ROOT ?>/browseByDish.php">By Dish</a></li>
+		          <li id='browseByDiet'><a href="<?php echo ROOT ?>/browseByDiet.php">By Diet</a></li>
             </ul>
           </li>		  
-		  <li id='yourRecipes'><a href="<?php echo ROOT ?>/recipesMade">Your Recipes</a></li>
+		  <li id='yourRecipes'><a href="<?php echo ROOT ?>/recipesMade.php">Your Recipes</a></li>
           <script type='text/javascript'>
             $('.dropdown-toggle').dropdown();
           </script>
@@ -34,9 +34,9 @@
         <div class='pull-right'>
           <ul class='nav'>
             <?php if(isset($_SESSION['userID'])) { ?>
-              <li><a href="<?php echo ROOT ?>/logout">Log out</a></li>
+              <li><a onclick="FB.logout()" href="<?php echo ROOT ?>/logout.php">Log out</a></li>
             <?php } else { ?>
-              <li id='login'><a href="<?php echo ROOT ?>/login">Log in</a></li>
+              <li id='login'><a href="<?php echo ROOT ?>/login.php">Log in</a></li>
             <?php } ?>
           </ul>
         </div>
