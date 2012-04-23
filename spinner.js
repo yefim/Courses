@@ -147,7 +147,7 @@ function SpinControlAccelerationCollection()
   }
 }
 
-function SpinControl()
+function SpinControl(name)
 {
   var _this = this;
   
@@ -188,6 +188,7 @@ function SpinControl()
   _textBox.type = 'text';
   _textBox.className = 'spinInput';
   _textBox.value = _currentValue;
+  _textBox.name = name;
   
   var _upButton = document.createElement("DIV");
   _upButton.className = 'spinUpBtn';
@@ -530,6 +531,8 @@ function SpinControl()
   this.GetCurrentValue = function()
   { return _currentValue; }
 
+  this.GetTextboxName = function()
+  {return _textBox.name}
   this.GetMaxValue = function()
   { return _maximumVal; }
    
