@@ -71,12 +71,15 @@ Use only ingredients from your inventory:
 
 <a id="displayText" href="javascript:toggle();">show</a> <== click Here
 <div  id="Appetizer 1" style="display:none">
+</div>
 <div>
+<?php for($i=0; $i<$_GET['numAppet']; $i++){ ?>
+<div>Appetizer <?php echo $i+1; ?> </div>
 <div style="position:relative; float:left">Wanted Ingredients: </div> 
 <select name="ingredients[]" data-placeholder="Choose ingredients" class="chzn-select" multiple style="width:200px;position:relative;float:left" tabindex="4">
 		<option value=""></option>
 	<?php
-	while($row1 = mysql_fetch_array($wantIngArray['appet'][0])) {
+	while($row1 = mysql_fetch_array($wantIngArray['appet'][$i])) {
 	?>
 		<option value="<?php echo $row1['ingredientid'];?>"><?php echo $row1['name'];?></option>
 	<?php
@@ -90,28 +93,21 @@ Use only ingredients from your inventory:
 <select name="ingredients[]" data-placeholder="Choose ingredients" class="chzn-select" multiple style="width:200px;position:relative;float:left" tabindex="5">
 		<option value=""></option>
 	<?php
-	while($row2 = mysql_fetch_array($uWantIngArray['appet'][0])) {
+	while($row2 = mysql_fetch_array($uWantIngArray['appet'][$i])) {
 	?>
 		<option value="<?php echo $row2['ingredientid'];?>"><?php echo $row2['name'];?></option>
 	<?php
-	}
-	?>
+	} ?>
 </select>
-</div>
-</div>
-<div id="forloop">
+<br style="clear:both;" />
+<br />
+<br />
+<?php } ?>
 </div>
 <script language="javascript">
-function generate(){
-	var text = document.getElementById("forloop");
-
-	for(var i=0; i<spinCtrl1.GetCurrentValue(); i++){
-		text.innerHTML += "appetizer" + spinCtrl1.GetTextboxName();
-		
-	}
-}
+	
 function toggle() {
-	var ele = document.getElementById("Appetizer 1");
+	var ele = document.getElementById("forloop");
 	if(ele.style.display == "block") {
     		ele.style.display = "none";
   	}
