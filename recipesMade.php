@@ -5,15 +5,15 @@
     die();
   }
 ?>
+<?php create_header("Recipes You've Made") ?>
 <div class='span12'>
-  <h2>Recipes you made</h2>
   <table class='table' id='recipe_table'>
     <thead>
       <tr>
         <th>Name</th>
-		<th>Prep Time</th>
-		<th>Cook Time</th>
-		<th>Instructions</th>
+        <th>Prep Time</th>
+		    <th>Cook Time</th>
+		    <th>Instructions</th>
         <th class='action'></th>
       </tr>
     </thead>
@@ -36,6 +36,4 @@
     </tbody>
   </table>
 </div>
-
-
 <?php include('footer.php'); ?>
