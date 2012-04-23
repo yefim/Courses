@@ -1,25 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
-  session_start();
   include('mysql.php');
-  include('functions.php');
+  session_start();
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <title>Browse Meals</title>
-    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
-  <script type='text/javascript' src='<?php echo ROOT ?>/javascripts/table.js'></script>
-    <script type='text/javascript' src='<?php echo ROOT ?>/javascripts/ready.js'></script>
-    <script type='text/javascript' src='<?php echo ROOT ?>/javascripts/bootstrap-typeahead.js'></script>
-    <script type='text/javascript' src='<?php echo ROOT ?>/javascripts/bootstrap-dropdown.js'></script>
-    <script type='text/javascript' src='<?php echo ROOT ?>/javascripts/bootstrap-alert.js'></script>
-    <script src="<?php echo ROOT ?>/chosen/chosen.jquery.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/bootstrap.css" />
-	  <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/chosen/chosen.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>/css/base.css" />
-	<link rel="stylesheet" href="<?php echo ROOT ?>/css/style.css" type="text/css" media="screen" />
-	<script type="text/javascript" src="<?php echo ROOT ?>/spinner.js"></script>
     <style type="text/css">
         body { font-family:Arial, Helvetica, Sans-Serif; font-size:0.8em;}
         #report { border-collapse:collapse;}
@@ -48,9 +35,7 @@
     </script>        
 </head>
 <body>
-<?php include('navbar.php'); ?>
-    <div id='wrapper'>
-	<h1>Meals</h1>
+    <h1>Meals</h1>
     <table id="report">
         <tr>
             <th>Name</th>
@@ -140,6 +125,5 @@
             </td>
         </tr>
      <?php } ?>  
-	 </table>
-
-<?php include('footer.php') ?>
+</body>
+</html>

@@ -14,7 +14,7 @@
     $_SESSION['userID'] = $id;
     $_SESSION['first'] = $first;
     $_SESSION['last'] = $last;
-    header('Location: index.php');
+    header('Location:'.ROOT);
     die();
   }
 ?>

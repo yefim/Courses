@@ -1,15 +1,16 @@
 <?php include('header.php'); ?>
 <?php
   if(!isset($_SESSION['userID'])) {
-    header('Location: login.php');
+    header('Location: login');
     die();
   }
 ?>
-<div class='span4 index-column'>
+<?php create_header('Your Kingdom'); ?>
+<div class='index-column'>
   <h2>Recipes you've made</h2>
 </div>
 
-<div class='span4 index-column'>
+<div class='span6 index-column'>
   <h2>Ingredients you own</h2>
   <table class='table' id='ingredients_table'>
     <thead>
@@ -56,7 +57,7 @@
   </table>
 </div>
 
-<div class='span4 index-column'>
+<div class='span6 index-column'>
   <h2>Meals you like</h2>
   <?php
     $q = "SELECT DISTINCT likes.mealid, meal.name, users.firstname FROM likes, meal,users WHERE likes.fbid=".$_SESSION['userID']." AND likes.mealid=meal.mealid AND users.fbid=meal.creator";
