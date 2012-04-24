@@ -47,6 +47,16 @@ var unlikeMeal = function(element) {
     data: {'method':'unlike','id':id}
   });
 }
+var removeMeal = function(element) {
+  var id = $(element).closest('tr')[0].id;
+  $(element).closest('tr').remove();
+  //window.location = 'meals.php?method=delete&id='+id;
+  $.ajax({
+    type:'GET',
+    url:'meals.php',
+    data: {'method':'delete','id':id}
+  });
+}
 var unlike = function(element) {
   var $row = $(element).closest('tr');
   $(element).replaceWith("<button class='btn btn-primary' onclick='likeMeal(this);'>Like</button>");

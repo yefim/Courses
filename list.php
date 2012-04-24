@@ -23,7 +23,7 @@
         <?php if($row['creator'] == $_SESSION['userID']) { ?> 
           <td class='creator'><? echo 'You ('.$row['firstname'].')'; ?></td>
           <td class='madeon'><? echo date('F j, Y', strtotime($row['madeon'])); ?></td>
-          <td><button class='btn' onclick='editMeal(this);'>Edit</button></td>
+          <td><button class='btn btn-danger' onclick='removeMeal(this);'>Remove</button></td>
         <?php } else { ?>
           <td class='creator'><? echo $row['firstname']; ?></td>
           <td class='madeon'><? echo date('F j, Y', strtotime($row['madeon'])); ?></td>

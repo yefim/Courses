@@ -12,6 +12,10 @@
     case "unlike":
       $q = "DELETE FROM likes WHERE fbid=$id AND mealid=$mealid";
       break;
+    case "delete":
+      mysql_query("DELETE FROM mealhasrecipes WHERE mealid=$mealid");
+      mysql_query("DELETE FROM mealhasdrinks WHERE mealid=$mealid");
+      $q = "DELETE FROM meal WHERE mealid=$mealid";
   }
   mysql_query($q);
   echo $q;
