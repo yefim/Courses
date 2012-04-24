@@ -72,13 +72,13 @@
           $drink[] = $row2['name'];
         }
 				?>
-				<h4>Appetizers: <small><?php echo count($appetizers); ?> desserts</small></h4>
+				<h4>Appetizers: <small><?php echo count($appetizers); ?> appetizers</small></h4>
 				<?php if(empty($appetizers)) {?>
 				  <p><small>Nothing here.</small></p>
 				<?php }  else { foreach($appetizers as $key=>$value) {?>
 				  <p><?php echo ($key+1).". $value"; ?></p>
 				<?php } } ?>
-				<h4>Main Courses: <small><?php echo count($entrees); ?> desserts</small></h4>
+				<h4>Main Courses: <small><?php echo count($entrees); ?> entrees</small></h4>
 				<?php if(empty($entrees)) {?>
 					<p><small>Nothing here.</small></p>
 				<?php } else { foreach($entrees as $key=>$value) {?>
@@ -90,7 +90,7 @@
 				<?php }  else { foreach($desserts as $key=>$value) {?>
 					<p><?php echo ($key+1).". $value"; ?></p>
 				<?php } } ?>
-				<h4>Drinks: <small><?php echo count($drink); ?> desserts</small></h4>
+				<h4>Drinks: <small><?php echo count($drink); ?> drinks</small></h4>
 				<?php if(empty($drink)) {?>
 					<p><small>Nothing here.</small></p>
 				<?php }  else { foreach($drink as $key=>$value) {?>

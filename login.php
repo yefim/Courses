@@ -22,8 +22,14 @@
 <script type='text/javascript' src='javascripts/fb.js'></script>
 <div id='description' class='hero-unit'>
   <p>
+    King's Courses is your own virtual recipe kingdom.
+  </p>
+  <p>
     King's Courses allows you to follow your dreams and eat your pants off as you trek through
-    the world of meals and recipes.  
+    the world of meals and recipes. 
+  </p>
+  <p>
+   Create new meals and organize old ones. 
   </p>
   <p>
     Log in to explore the world of tomorrow.
