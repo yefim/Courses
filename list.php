@@ -59,6 +59,9 @@
             $desserts[] = $row1['name'];
           }
 				}
+        while($row2 = mysql_fetch_array($drinks)) {
+          $drink[] = $row2['name'];
+        }
 				?>
 				<h4>Appetizers: </h4>
 				<?php if(empty($appetizers)) {?>
@@ -79,15 +82,14 @@
 					<p><?php echo $value ?></p>
 				<?php } } ?>
 				  <h4>Drinks: </h4>
-				<?php if(!isset($drinks)) {?>
-					<p> This meal has no drinks. </p>
-				<?php }  else { while($drinkrow = mysql_fetch_array($drinks)) {?>
-					<p> <?php echo $drinkrow['name'] ?> </p>
+				<?php if(empty($drink)) {?>
+					<p>This meal has no drinks.</p>
+				<?php }  else { foreach($drink as $value) {?>
+				  <p><?php echo $value ?></p>
 				<?php } } ?>
         </td>
       </tr>
-    <?php } ?>
     </tbody>
-  </table>
-</div>
-<?php include('footer.php'); ?>
+  <?php } ?>  
+</table>
+<?php include('footer.php') ?>

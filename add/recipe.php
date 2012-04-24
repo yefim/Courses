@@ -12,10 +12,11 @@
 	  $dishID = $_POST["dishID"];
 	  $creator = $_SESSION['userID'];
 	  $ingredients = $_POST["ingredients"];
-    $q = "INSERT INTO recipe " .
+	  
+	if($recipeName != null && $instructions != null && $prepTime != null && $cookTime != null && $ingredients != null){
+		$q = "INSERT INTO recipe " .
 	        "(name, instructions, preptime, cooktime, dishid, creator) VALUES " .
 	        "(\"$recipeName\", \"$instructions\", $prepTime, $cookTime, $dishID, \"$creator\")";
-    error($q);
 
 	  mysql_query($q);
 	  
@@ -23,8 +24,14 @@
 	  	mysql_query("INSERT INTO usedin (RECIPEID, INGREDIENTID) " .
 	  				"VALUES ($recipeID, $value)");
 	  }
-    success("Your recipe ($recipeName) has been added.");	
+
+	  success("Your recipe ($recipeName) has been added.");	
+	}
+	 else {
+      error('Please fill out all the fields.');
+    }
   }
+ 
   $dishes = mysql_query("SELECT * FROM dish ORDER BY name");
   $ingredients = mysql_query("SELECT * FROM ingredients ORDER BY name");
 ?>
