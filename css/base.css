@@ -14,6 +14,8 @@ small {
   margin-bottom: 14px;
 }
 .index-column {
+  border-bottom: 2px #eee dashed;
+  margin-bottom: 10px;
   /*margin-left: 0;
   padding-left: 19px;
   border-left: 1px solid #eee;*/

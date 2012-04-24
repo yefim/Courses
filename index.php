@@ -6,15 +6,13 @@
   }
 ?>
 <?php create_header('Your Kingdom'); ?>
-<div class='index-column'>
+<div class='index-column span6'>
   <h2>Recipes you've made</h2>
   <table class='table' id='recipe_table'>
     <thead>
       <tr>
         <th>Name</th>
-        <th>Prep Time</th>
-		    <th>Cook Time</th>
-		    <th>Instructions</th>
+        <th># of Ingredients</th>
         <th class='action'></th>
       </tr>
     </thead>
@@ -40,7 +38,7 @@
 
 <div class='span6 index-column'>
   <h2>Ingredients you own</h2>
-  <table class='table' id='ingredients_table'>
+  <table class='table table-condensed' id='ingredients_table'>
     <thead>
       <tr>
         <th>Name</th>
@@ -85,7 +83,7 @@
   </table>
 </div>
 
-<div class='span6 index-column'>
+<div class='index-column'>
   <h2>Meals you like</h2>
   <?php
     $q = "SELECT DISTINCT likes.mealid, meal.name, users.firstname FROM likes, meal,users WHERE likes.fbid=".$_SESSION['userID']." AND likes.mealid=meal.mealid AND users.fbid=meal.creator";
