@@ -3,6 +3,10 @@
   session_start();
   include('mysql.php');
   include('functions.php');
+    if(!isset($_SESSION['userID'])) {
+    header('Location: login.php');
+    die();
+  }
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
