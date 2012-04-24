@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a href='<?php echo ROOT ?>/' class='brand'>King's Courses</a>
+      <a href='<?php echo ROOT ?>/' class='brand'><span class='strike'>King's Courses</span> <span class='red'>Lore</span></a>
       <div class="nav-collapse">
         <ul class="nav">
           <li id='browse'><a href="<?php echo ROOT ?>/list.php">List Meals</a></li>

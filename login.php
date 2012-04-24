@@ -5,10 +5,10 @@
 <script type='text/javascript' src='javascripts/fb.js'></script>
 <div id='description' class='hero-unit'>
   <p>
-    King's Courses is your own virtual recipe kingdom.
+    <span class='strike'>King's Courses</span> <span class='red'>Lore</span> is your own virtual recipe kingdom.
   </p>
   <p>
-    King's Courses allows you to follow your dreams and eat your pants off as you trek through
+    <span class='strike'>King's Courses</span> <span class='red'>Lore</span> allows you to follow your dreams and eat your pants off as you trek through
     the world of meals and recipes. 
   </p>
   <p>

@@ -4,6 +4,12 @@ a:hover {text-decoration: none; }
 small {
   padding-left: 5px;
 }
+.strike {
+  text-decoration: line-through;
+}
+.red {
+  color: #EC1F0A;
+}
 .hilight {
   background-color: #FFFBCC;
 }
