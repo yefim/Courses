@@ -21,7 +21,7 @@
   }
 
 ?>
-<form action='buildmeal.php' class='form-horizontal' method='POST'>
+<form action='list.php' class='form-horizontal' method='POST'>
   <div class='section-header'>
     <h2>Meal Details</h2>
   </div>

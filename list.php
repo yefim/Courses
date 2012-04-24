@@ -1,6 +1,24 @@
 <?php include('header.php'); ?>
 <?php create_header('List Meals'); ?>
 <?php
+  if(isset($_POST['name'])) {
+    $id = $_SESSION['userID'];
+    $name = $_POST['name'];
+    $recipes = $_POST['recipes'];
+    $sql = "SHOW TABLE STATUS LIKE 'meal'";
+    $result = mysql_query($sql);
+    $row = mysql_fetch_array($result);
+    $next_id = $row['Auto_increment'];
+    
+    mysql_query("INSERT INTO meal(name, creator) VALUES('$name','$id')");
+    foreach($recipes as $r) {
+      $query = "INSERT INTO mealhasrecipes(mealid, recipeid) VALUES ($next_id, $r)";
+      mysql_query($query);
+    }
+    //success("Your meal ($name) has been created.");
+    success("Your meal ($name) has been created.");
+    $hilight = $name;
+  }
   if(isset($_GET['name'])) {
     $hilight = $_GET['name'];
     success("Your meal ($hilight) has been created.");
