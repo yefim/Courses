@@ -1,24 +1,13 @@
 <?php include('header.php'); ?>
 <?php 
-	$wantIngArray = array("appet"=>array(), "main"=>array(), "des"=>array());
-	for ($i = 0; $i < $_GET['numAppet']; $i++) {
-       $wantIngArray['appet'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
+	$diets = mysql_query("SELECT * FROM Diet ORDER BY Diet.name");
+	$wantIngArray = array();
+	for ($i = 0; $i < $_GET['numAppet'] + $_GET['numMain'] + $_GET['numDes']; $i++) {
+       $wantIngArray[$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
    }
-   	for ($i = 0; $i < $_GET['numMain']; $i++) {
-       $wantIngArray['main'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
-   }
-   	for ($i = 0; $i < $_GET['numDes']; $i++) {
-       $wantIngArray['des'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
-   }
-   	$uWantIngArray = array("appet"=>array(), "main"=>array(), "des"=>array());
-	for ($i = 0; $i < $_GET['numAppet']; $i++) {
-       $uWantIngArray['appet'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
-   }
-   	for ($i = 0; $i < $_GET['numMain']; $i++) {
-       $uWantIngArray['main'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
-   }
-   	for ($i = 0; $i < $_GET['numDes']; $i++) {
-       $uWantIngArray['des'][$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
+   	$uWantIngArray = array();
+	for ($i = 0; $i < $_GET['numAppet'] + $_GET['numMain'] + $_GET['numDes']; $i++) {
+       $uWantIngArray[$i] = mysql_query("SELECT * FROM ingredients ORDER BY ingredients.name");
    }
 	?>
 
@@ -73,13 +62,27 @@ Use only ingredients from your inventory:
 <div  id="Appetizer 1" style="display:none">
 </div>
 <div>
-<?php for($i=0; $i<$_GET['numAppet']; $i++){ ?>
-<div>Appetizer <?php echo $i+1; ?> </div>
+<?php for($i=0; $i<$_GET['numAppet']+ $_GET['numMain'] + $_GET['numDes']; $i++){ ?>
+<div><?php
+if($i < $_GET['numAppet']){
+	$s = $i +1;
+	echo "Appetizer " . $s;
+}
+else if($i < $_GET['numAppet'] + $_GET['numMain']){
+	$s = $i - $_GET['numAppet']+1;
+	echo "Main Course " . $s;
+}
+else{
+	$s = $i - $_GET['numAppet'] - $_GET['numMain']+1;
+	echo "Dessert " . $s;
+}
+?> </div>
+<form action='' method='get'>
 <div style="position:relative; float:left">Wanted Ingredients: </div> 
-<select name="ingredients[]" data-placeholder="Choose ingredients" class="chzn-select" multiple style="width:200px;position:relative;float:left" tabindex="4">
+<select id = "<?php echo 'id' . $i?>" name="ingredients[]" data-placeholder="Choose ingredients" class="chzn-select" multiple style="width:200px;position:relative;float:left" onchange='findDish(get_selected("<?php echo 'id' . $i?>")' tabindex="4">
 		<option value=""></option>
 	<?php
-	while($row1 = mysql_fetch_array($wantIngArray['appet'][$i])) {
+	while($row1 = mysql_fetch_array($wantIngArray[$i])) {
 	?>
 		<option value="<?php echo $row1['ingredientid'];?>"><?php echo $row1['name'];?></option>
 	<?php
@@ -88,22 +91,73 @@ Use only ingredients from your inventory:
 </select>
 <br style="clear:both;" />
 <br />
-<div>
 <div style="position:relative; float:left">Unwanted Ingredients:</div>
 <select name="ingredients[]" data-placeholder="Choose ingredients" class="chzn-select" multiple style="width:200px;position:relative;float:left" tabindex="5">
 		<option value=""></option>
 	<?php
-	while($row2 = mysql_fetch_array($uWantIngArray['appet'][$i])) {
+	while($row2 = mysql_fetch_array($uWantIngArray[$i])) {
 	?>
 		<option value="<?php echo $row2['ingredientid'];?>"><?php echo $row2['name'];?></option>
 	<?php
 	} ?>
 </select>
+
 <br style="clear:both;" />
 <br />
 <br />
+<div id="txtHint"><b>Person info will be listed here.</b></div>
 <?php } ?>
+
 </div>
+
+<script type="text/javascript">
+function get_selected(id) {
+    arr_selected = new Array();
+    obj_select = document.getElementById(id);
+
+    for (i=0; i < obj_select.length; i++) {
+        if (obj_select[i].selected) {
+            arr_selected.push(obj_select[i].value);
+        }
+    }
+	if(arr_selected.length>0)
+		return 'ingredientid="' . arr_selected.join('" OR ingredientid="');
+	else
+		return '';
+}
+function findDish(string){
+document.getElementById("txtHint").innerHtml="reached here!";
+document.getElementById("txtHint").innerHtml=string;
+return;
+}
+function findRecipe(str)
+{
+if (str=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","getDishes.php?q="+str,true);
+xmlhttp.send();
+}
+</script>
+
+
 <script language="javascript">
 	
 function toggle() {
