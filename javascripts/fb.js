@@ -11,7 +11,7 @@ window.fbAsyncInit = function() {
     //get the rest of the users data
     FB.api('/me', function(response) {
       //console.log(response);
-      window.location = "login.php?userID=" + userID + "&firstname=" + response.first_name + "&lastname=" + response.last_name;
+      window.location = "index.php?userID=" + userID + "&firstname=" + response.first_name + "&lastname=" + response.last_name;
     });
     //window.location = "login.php?userID=" + userID + "&name=" + name;
     

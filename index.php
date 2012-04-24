@@ -1,8 +1,13 @@
 <?php include('header.php'); ?>
 <?php
-  if(!isset($_SESSION['userID'])) {
-    header('Location: login.php');
-    die();
+  if (isset($_GET['userID'])) {
+    $id = $_GET['userID'];
+    $first = $_GET['firstname'];
+    $last = $_GET['lastname'];
+    $result = mysql_query("SELECT * FROM users WHERE fbid=$id") or mysql_query("INSERT INTO users(FBid, firstname, lastname) VALUES('$id','$first','$last')");
+    $_SESSION['userID'] = $id;
+    $_SESSION['first'] = $first;
+    $_SESSION['last'] = $last;
   }
 ?>
 <?php create_header('Your Kingdom'); ?>
