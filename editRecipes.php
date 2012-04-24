@@ -30,7 +30,7 @@
 	while($row = mysql_fetch_array($recipe)) {
 ?>
     <tr class='recipe'>
-	  <form name="submitEdit" action="submitEdit.php" method="post">
+	  <form name="submitEdit" action="index.php" method="post">
 		<input name="recipeID" type="hidden" value="<?php echo $row['id'] ?>">
       <td class='name'>
 		<input name="recipeName" type=text size="20" maxlength="300" value="<?php echo $row['name']; ?>">

@@ -9,6 +9,29 @@
     $_SESSION['first'] = $first;
     $_SESSION['last'] = $last;
   }
+  if (isset($_POST['recipeName'])) {
+	  $recipeName = $_POST["recipeName"];
+	  $instructions = $_POST["instructions"];
+	  $prepTime = $_POST["prepTime"];
+	  $cookTime = $_POST["cookTime"];
+	  $recipeID = $_POST["recipeID"];
+	  //$dishID = $_POST["dishID"];
+	  $creator = $_SESSION['userID'];
+	  //$ingredients = $_POST["ingredients"];
+	  
+	  if ($instructions == ""){$instructions = " ";}
+	  if ($prepTime == ""){$prepTime = " ";}
+	  if ($cookTime == ""){$cookTime = " ";}
+	  
+	  $q = "UPDATE recipe " .
+	  	 "SET name=\"$recipeName\", instructions=\"$instructions\", prepTime=$prepTime, cookTime=$cookTime " .
+	  	 "WHERE recipeid=$recipeID";
+	  	 
+	  //echo $q;	 
+	  
+	  mysql_query($q);
+
+  }
 ?>
 <?php create_header('Your Kingdom'); ?>
 
