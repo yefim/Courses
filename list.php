@@ -47,7 +47,7 @@
                 $(this).next("tr").toggle();
                 $(this).find(".arrow").toggleClass("up");
             });
-            //$("#report").jExpand();
+            $("#report").jExpand();
         });
     </script>        
 </head>
@@ -75,7 +75,7 @@
         <?php if($row['creator'] == $_SESSION['userID']) { ?> 
           <td><?php echo 'You ('.$row['firstname'].')'; ?></td>
           <td><?php echo date('F j, Y', strtotime($row['madeon'])); ?></td>
-          <td><button class='btn' onclick='editMeal(this);'>Edit</button></td>
+          <td><button class='btn' onclick="window.location.href='login.php'">Edit</button></td>
         <?php } else { ?>
           <td><?php echo $row['firstname']; ?></td>
           <td><?php echo date('F j, Y', strtotime($row['madeon'])); ?></td>
@@ -98,10 +98,14 @@
 					$q1 = "SELECT r.name, d.categoryid FROM mealhasrecipes AS mr, recipe as r, dish as d WHERE mr.mealid = $mealid and mr.recipeid = r.recipeid and r.dishid = d.dishid";
 					$q2 = "SELECT d.name FROM mealhasdrinks as mr, drink as d WHERE mr.mealid = $mealid and mr.drinkid = d.drinkid";
 					$recipes = mysql_query($q1);
-					$drinks = mysql_query($q2);
+					$drinks =  mysql_query($q2);
 					$appetizers = array();
 					$entrees = array();
 					$desserts = array();
+					$drink = array();
+					while ($row2 = mysql_fetch_array($drinks)) {
+						$drink[] = $row2['name'];
+					}
 					while($row1 = mysql_fetch_array($recipes)) {
 						if($row1['categoryid'] == 0):
 							$appetizers[] = $row1['name'];
@@ -111,6 +115,7 @@
 							$desserts[] = $row1['name'];
 						endif;
 					}
+				
 
 					?>
 					
@@ -136,10 +141,10 @@
 					<?php } } ?>
 					<br></br>
 					<h4>Drinks: </h4>
-					<?php if(!isset($drinks)) {?>
+					<?php if(empty($drink)) {?>
 						<br> This meal has no drinks. </br>
-					<?php }  else { while($drinkrow = mysql_fetch_array($drinks)) {?>
-									<br> <?php echo $drinkrow['name'] ?> </br>
+					<?php }  else { foreach($drink as $value) {?>
+									<br> <?php echo $value ?> </br>
 					<?php } } ?>
             </td>
         </tr>
