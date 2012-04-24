@@ -11,37 +11,6 @@
   }
 ?>
 <?php create_header('Your Kingdom'); ?>
-<div class='index-column span6'>
-  <h2>Recipes you've made</h2>
-  <table class='table' id='recipe_table'>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Prep Time</th> 
-        <th>Cook Time</th> 
-        <th>Instructions</th> 
-        <th class='action'></th>
-      </tr>
-    </thead>
-    <tbody>
-  <?php
-  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions FROM recipe r WHERE creator=" . $_SESSION['userID'];
-  $recipes = mysql_query($q);
-  while($row = mysql_fetch_array($recipes)) {
-  ?>
-    <tr class='recipe' id='<?php echo $row['id'] ?>'>
-      <td class='name'><?php echo $row['name']; ?></td>
-      <td class='prep'><?php echo $row['prepTime']; ?></td>
-      <td class='cook'><?php echo $row['cookTime']; ?></td>
-      <td class='insn'><?php echo $row['instructions']; ?></td>
-	  <td><form name="editRecipe" action="editRecipes.php" method="post"><input name="recipeID" type="hidden" value="<?php echo $row['id'] ?>"><button class='btn' onclick(submit)>Edit</button></form></td>
-    </tr>
-  <?php
-  }
-  ?>
-    </tbody>
-  </table>
-</div>
 
 <div class='span6 index-column'>
   <h2>Ingredients you own</h2>
@@ -66,7 +35,7 @@
   <?php } ?>
     <tr class='item-row'>
       <td>
-        <input id='ingredients' type='text' />
+        <input id='ingredients' type='text' placeholder='Add an ingredient...' />
         <?php
           $q = "SELECT * FROM ingredients WHERE ingredientid NOT IN (SELECT i.ingredientid FROM ingredients i, userhas h WHERE i.ingredientid=h.ingredientid AND FBid=".$_SESSION['userID'].")";
           //echo $q;
@@ -89,6 +58,40 @@
     </tbody>
   </table>
 </div>
+<div class='index-column span6'>
+  <h2>Recipes you've made</h2>
+  <?php
+  $q = "SELECT r.recipeid as id, r.name, r.prepTime, r.cookTime, r.instructions FROM recipe r WHERE creator=" . $_SESSION['userID'];
+  $recipes = mysql_query($q);
+  if (mysql_num_rows($recipes) == 0) {
+    echo "<h4 class='red'>Add Ingredients, then create a Recipe</h4>";
+  } else { ?>
+  <table class='table' id='recipe_table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Prep Time</th> 
+        <th>Cook Time</th> 
+        <th>Instructions</th> 
+        <th class='action'></th>
+      </tr>
+    </thead>
+    <tbody>
+  <?php while($row = mysql_fetch_array($recipes)) { ?>
+    <tr class='recipe' id='<?php echo $row['id'] ?>'>
+      <td class='name'><?php echo $row['name']; ?></td>
+      <td class='prep'><?php echo $row['prepTime']; ?></td>
+      <td class='cook'><?php echo $row['cookTime']; ?></td>
+      <td class='insn'><?php echo $row['instructions']; ?></td>
+	  <td><form name="editRecipe" action="editRecipes.php" method="post"><input name="recipeID" type="hidden" value="<?php echo $row['id'] ?>"><button class='btn' onclick(submit)>Edit</button></form></td>
+    </tr>
+  <?php
+  }
+  }
+  ?>
+    </tbody>
+  </table>
+</div>
 
 <div class='index-column'>
   <h2>Meals you like</h2>
@@ -96,7 +99,7 @@
     $q = "SELECT DISTINCT likes.mealid, meal.name, users.firstname FROM likes, meal,users WHERE likes.fbid=".$_SESSION['userID']." AND likes.mealid=meal.mealid AND users.fbid=meal.creator";
     $meals = mysql_query($q);
     if (mysql_num_rows($meals) == 0) { ?>
-      <h4>You have not liked any meals yet.</h4>
+      <h4 class='red'>You have not liked any meals yet.</h4>
     <?php } else { ?>
       <table class='table' id='meals_table'>
         <thead>

@@ -39,7 +39,7 @@ var unlikeMeal = function(element) {
   var $table = $('#meals_table');
   var row_count = $table.find('tr').length;
   if (row_count === 1) {
-    $table.replaceWith("<h4>You have not liked any meals yet.</h4>");
+    $table.replaceWith("<h4 class='red'>You have not liked any meals yet.</h4>");
   }
   $.ajax({
     type:'GET',
