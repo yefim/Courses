@@ -1,7 +1,12 @@
 <?php include('header.php'); ?>
 <?php create_header('List Meals'); ?>
-<div>
-  <h2>Meals</h2>
+<?php
+  if(isset($_GET['name'])) {
+    $hilight = $_GET['name'];
+    success("Your meal ($hilight) has been created.");
+  }
+?>
+<h2>Meals</h2>
   <table class='table' id='meals_table'>
     <thead>
       <tr>
@@ -18,7 +23,11 @@
     $meals = mysql_query($q);
     while($row = mysql_fetch_array($meals)) {
     ?>
+      <?php if ($hilight == $row['name']) { ?>
+      <tr class='meals hilight' id='<?php echo $row['mealid']; ?>'>
+      <?php } else { ?>
       <tr class='meals' id='<?php echo $row['mealid']; ?>'>
+      <?php } ?>
         <td class='name'><? echo $row['name']; ?></td>
         <?php if($row['creator'] == $_SESSION['userID']) { ?> 
           <td class='creator'><? echo 'You ('.$row['firstname'].')'; ?></td>
@@ -39,7 +48,7 @@
           <?php } ?>
         <?php } ?>
       </tr>
-      <tr>
+      <tr class='even'>
         <td colspan="5">
 				<?php
 		    $mealid = $row['mealid'];
@@ -63,29 +72,29 @@
           $drink[] = $row2['name'];
         }
 				?>
-				<h4>Appetizers: </h4>
+				<h4>Appetizers: <small><?php echo count($appetizers); ?> desserts</small></h4>
 				<?php if(empty($appetizers)) {?>
-				  <p>This meal has no appetizers.</p>
-				<?php }  else { foreach($appetizers as $value) {?>
-				  <p><?php echo $value ?></p>
+				  <p><small>Nothing here.</small></p>
+				<?php }  else { foreach($appetizers as $key=>$value) {?>
+				  <p><?php echo ($key+1).". $value"; ?></p>
 				<?php } } ?>
-					<h4>Main Courses: </h4>
+				<h4>Main Courses: <small><?php echo count($entrees); ?> desserts</small></h4>
 				<?php if(empty($entrees)) {?>
-					<p>This meal has no main courses.</p>
-				<?php } else { foreach($entrees as $value) {?>
-					<p><?php echo $value ?></p>
+					<p><small>Nothing here.</small></p>
+				<?php } else { foreach($entrees as $key=>$value) {?>
+					<p><?php echo ($key+1).". $value"; ?></p>
 				<?php } } ?>
-					<h4>Desserts: </h4>
+        <h4>Desserts: <small><?php echo count($desserts); ?> desserts</small></h4>
 				<?php if(empty($desserts)) {?>
-					<p>This meal has no desserts.</p>
-				<?php }  else { foreach($desserts as $value) {?>
-					<p><?php echo $value ?></p>
+					<p><small>Nothing here.</small></p>
+				<?php }  else { foreach($desserts as $key=>$value) {?>
+					<p><?php echo ($key+1).". $value"; ?></p>
 				<?php } } ?>
-				  <h4>Drinks: </h4>
+				<h4>Drinks: <small><?php echo count($drink); ?> desserts</small></h4>
 				<?php if(empty($drink)) {?>
-					<p>This meal has no drinks.</p>
-				<?php }  else { foreach($drink as $value) {?>
-				  <p><?php echo $value ?></p>
+					<p><small>Nothing here.</small></p>
+				<?php }  else { foreach($drink as $key=>$value) {?>
+				  <p><?php echo ($key+1).". $value"; ?></p>
 				<?php } } ?>
         </td>
       </tr>

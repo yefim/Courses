@@ -12,7 +12,9 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th># of Ingredients</th>
+        <th>Prep Time</th> 
+        <th>Cook Time</th> 
+        <th>Instructions</th> 
         <th class='action'></th>
       </tr>
     </thead>
@@ -22,7 +24,7 @@
   $recipes = mysql_query($q);
   while($row = mysql_fetch_array($recipes)) {
   ?>
-    <tr class='recipe'>
+    <tr class='recipe' id='<?php echo $row['id'] ?>'>
       <td class='name'><?php echo $row['name']; ?></td>
       <td class='prep'><?php echo $row['prepTime']; ?></td>
       <td class='cook'><?php echo $row['cookTime']; ?></td>

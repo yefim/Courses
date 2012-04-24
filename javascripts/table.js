@@ -48,8 +48,10 @@ var unlikeMeal = function(element) {
   });
 }
 var removeMeal = function(element) {
-  var id = $(element).closest('tr')[0].id;
-  $(element).closest('tr').remove();
+  $row = $(element).closest('tr');
+  var id = $row[0].id;
+  $row.next().remove();
+  $row.remove();
   //window.location = 'meals.php?method=delete&id='+id;
   $.ajax({
     type:'GET',

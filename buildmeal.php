@@ -16,7 +16,8 @@
       $query = "INSERT INTO mealhasrecipes(mealid, recipeid) VALUES ($next_id, $r)";
       mysql_query($query);
     }
-    success("Your meal ($name) has been created.");
+    header("Location: list.php?name=$name");
+    //success("Your meal ($name) has been created.");
   }
 
 ?>

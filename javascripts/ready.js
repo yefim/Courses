@@ -6,8 +6,8 @@ $(document).ready(function() {
   $("#meals_table tr:not(.odd)").hide();
   $("#meals_table tr:first-child").show();
   $("#meals_table tr.odd").click(function(){
+    $("#meals_table tr:not(.odd)").hide();
     $(this).next("tr").toggle();
-    $(this).find(".arrow").toggleClass("up");
   });
   $('.hover-info').hover(function() {
     $(this).children('.info').slideDown('50').fadeTo('50', 1);

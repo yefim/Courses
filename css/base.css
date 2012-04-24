@@ -4,6 +4,9 @@ a:hover {text-decoration: none; }
 small {
   padding-left: 5px;
 }
+.hilight {
+  background-color: #FFFBCC;
+}
 .recipes label {
   cursor: pointer;
 }
@@ -26,6 +29,9 @@ small {
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
+}
+tr.even {
+  background-color: #f1f1f1;
 }
 .header {
 	padding-bottom: 20px;
