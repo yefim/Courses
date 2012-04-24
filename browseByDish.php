@@ -1,7 +1,7 @@
 <?php include('header.php'); ?>
 
 <?php
-	$dishes = mysql_query("SELECT * FROM Dish ORDER BY Dish.name");
+	$dishes = mysql_query("SELECT * FROM dish ORDER BY dish.name");
 ?>
 
 <h1> Browse by Dish:</h1>
@@ -19,7 +19,7 @@
 	?>
 	</select><br><br>
 
-	<input type="submit" value="Search">
+	<input class='btn' type="submit" value="Search">
 	
 </form>
 

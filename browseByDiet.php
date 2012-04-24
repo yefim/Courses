@@ -1,7 +1,7 @@
 <?php include('header.php'); ?>
 
 <?php
-	$diets = mysql_query("SELECT * FROM Diet ORDER BY Diet.name");
+	$diets = mysql_query("SELECT * FROM diet ORDER BY diet.name");
 ?>
 
 <h1> Browse by Diet:</h1>
@@ -19,7 +19,7 @@
 	?>
 	</select><br><br>
 
-	<input type="submit" value="Search">
+	<input class='btn' type="submit" value="Search">
 	
 </form>
 
